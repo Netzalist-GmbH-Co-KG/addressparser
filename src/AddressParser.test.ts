@@ -32,8 +32,7 @@ it('parses the address' ,() => {
 it('parses the email' ,() => {
     const lines = testAddress.split('\n')
     expect(lines.length).toBe(12)
-    const zipMailRegex = new RegExp(/^(?:([a-z|[A-Z]){1,3}[- ]+)?\d{5}\s+(?:[a-z]|[A-Z]|[äöüß]|[ÄÖÜ]|\s|-)*/)
-
+    const zipMailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
     const result = lines.reduce( (currentCount: number, nextLine:string) => {
         const test = zipMailRegex.test(nextLine);
         if(test) return currentCount + 1
@@ -43,4 +42,4 @@ it('parses the email' ,() => {
     expect(result).toBe(1)
 })
 
-// noch nicht fertig!!!
+
