@@ -1,4 +1,4 @@
-import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword } from "./evaluationFunctions";
+import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword } from "./evaluationFunctions";
 
 it('should identify emails correctly' , () => {
 
@@ -57,6 +57,21 @@ it('should identify Streets correctly by Keyword' , () => {
   
     .forEach ( test => {
         expect(findStreetNumberPerKeyword(test.testString)).toBe(test.expectedProbability)
+    })
+
+})
+
+it('should identify company correctly by Keyword' , () => {
+
+    [
+        { testString: "", expectedProbability: 0 },
+        { testString: "test@test.de", expectedProbability: 0 },
+        { testString: "Knieper AG", expectedProbability: 1 },
+        { testString: "Netzalist GmbH & Co. KG", expectedProbability: 1 },
+    ]
+  
+    .forEach ( test => {
+        expect(findCompanyNamePerKeyword(test.testString)).toBe(test.expectedProbability)
     })
 
 })

@@ -1,4 +1,4 @@
-// Thes functions return the probability that a given line is a certain line Type ( i.e. an email )
+// These functions return the probability that a given line is a certain line Type ( i.e. an email )
 
 export function findEmailPerRegex(line: string) {
     const emaiLRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -19,3 +19,9 @@ export function findStreetNumberPerKeyword(line: string) {
     const keyWords = ["str. ", "strasse ", "weg ", "platz "]
     return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 0.6 : 0
 }
+
+export function findCompanyNamePerKeyword(line: string) {
+    const keyWords = ["ohg", "gmbh", "ag", "e. k.", "gmbh & co.kg" ]
+    return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 1 : 0
+}
+
