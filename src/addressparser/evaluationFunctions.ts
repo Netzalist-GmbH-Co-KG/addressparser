@@ -21,7 +21,7 @@ export function findStreetNumberPerKeyword(line: string) {
 }
 
 export function findCompanyNamePerKeyword(line: string) {
-    const keyWords = ["ohg", "gmbh", "ag", "e. k.", "gmbh & co.kg" ]
-    return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 1 : 0
+    const keyWords = [" ohg", " gmbh", " ag", " e. k.", " kg" ]
+    return keyWords.filter(keyword => line.toLowerCase().endsWith(keyword)).length > 0 ? 1 : 0
 }
 

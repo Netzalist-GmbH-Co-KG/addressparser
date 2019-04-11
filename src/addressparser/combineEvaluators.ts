@@ -1,9 +1,10 @@
-import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword } from "./evaluationFunctions";
+import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword } from "./evaluationFunctions";
 
 export enum lineTypes {
     "email",
     "zipCity",
-    "streetNumber"
+    "streetNumber",
+    "company",
 }
 
 // Group all evaluation functions per type
@@ -24,6 +25,12 @@ export function combineEvaluators() {
         findStreetNumberPerRegex,
         findStreetNumberPerKeyword,
     ])
+    // Company
+    evaluators.set(lineTypes.company, [
+        findCompanyNamePerKeyword,
+    ])
+
+
 
     return evaluators
 }
