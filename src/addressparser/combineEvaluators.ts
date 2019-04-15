@@ -38,7 +38,7 @@ export function combineEvaluators() {
     ])
 
      // German Trade Register
-     evaluators.set(lineTypes.url, [
+     evaluators.set(lineTypes.germanTradeRegister, [
        findGermanTradeRegisterPerKeyword,
     ])
 
