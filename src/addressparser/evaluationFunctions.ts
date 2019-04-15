@@ -25,3 +25,13 @@ export function findCompanyNamePerKeyword(line: string) {
     return keyWords.filter(keyword => line.toLowerCase().endsWith(keyword)).length > 0 ? 1 : 0
 }
 
+export function findUrlperRegex(line: string) {
+    const UrlRegex = new RegExp(/(^|\s|:)(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]!\$&'\(\)\*\+,;=.]+($|\s)/)
+    return UrlRegex.test(line) ? 0.8 : 0
+}
+
+export function findGermanTradeRegisterPerKeyword(line: string) {
+    const keyWords = ["hrb ", "hrb:", "handelsregister ", "hra: ", "hra ", "hr-nr ", "hr-nr."]
+    return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 1 : 0
+}
+   

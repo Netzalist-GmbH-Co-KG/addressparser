@@ -1,10 +1,12 @@
-import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword } from "./evaluationFunctions";
+import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword, findUrlperRegex, findGermanTradeRegisterPerKeyword } from "./evaluationFunctions";
 
 export enum lineTypes {
     "email",
     "zipCity",
     "streetNumber",
     "company",
+    "url",
+    "germanTradeRegister",
 }
 
 // Group all evaluation functions per type
@@ -28,6 +30,16 @@ export function combineEvaluators() {
     // Company
     evaluators.set(lineTypes.company, [
         findCompanyNamePerKeyword,
+    ])
+
+    // URL
+    evaluators.set(lineTypes.url, [
+        findUrlperRegex,
+    ])
+
+     // German Trade Register
+     evaluators.set(lineTypes.url, [
+       findGermanTradeRegisterPerKeyword,
     ])
 
 

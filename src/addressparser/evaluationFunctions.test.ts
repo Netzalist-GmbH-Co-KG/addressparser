@@ -1,4 +1,4 @@
-import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword } from "./evaluationFunctions";
+import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword, findUrlperRegex, findGermanTradeRegisterPerKeyword } from "./evaluationFunctions";
 
 it('should identify emails correctly' , () => {
 
@@ -72,6 +72,39 @@ it('should identify company correctly by Keyword' , () => {
   
     .forEach ( test => {
         expect(findCompanyNamePerKeyword(test.testString)).toBe(test.expectedProbability)
+    })
+
+})
+
+it('should identify URL correctly' , () => {
+
+    [
+        { testString: "", expectedProbability: 0 },
+        { testString: "Knieper AG", expectedProbability: 0 },
+        { testString: "www.knieper-consulting.com", expectedProbability: 0.8 },
+        { testString: "http://foo.com/blah_blah", expectedProbability: 0.8 },
+        { testString: "Marcel.Herrera-Becker@Knieper-Consulting.com", expectedProbability: 0 },
+        { testString: "HRB Nr: 75031", expectedProbability: 0 },
+    ]
+  
+    .forEach ( test => {
+        expect(findUrlperRegex(test.testString)).toBe(test.expectedProbability)
+    })
+
+})
+
+it('should identify Trade Register Number correctly by Keyword' , () => {
+
+    [
+        { testString: "", expectedProbability: 0 },
+        { testString: "test@test.de", expectedProbability: 0 },
+        { testString: "HR-Nr.: HRB 234040", expectedProbability: 1 },
+        { testString: "HRB Nr: 75031", expectedProbability: 1 },
+        { testString: "HRB 64185", expectedProbability: 1 },
+    ]
+  
+    .forEach ( test => {
+        expect(findGermanTradeRegisterPerKeyword(test.testString)).toBe(test.expectedProbability)
     })
 
 })
