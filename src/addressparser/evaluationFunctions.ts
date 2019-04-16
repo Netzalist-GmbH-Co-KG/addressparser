@@ -34,4 +34,10 @@ export function findGermanTradeRegisterPerKeyword(line: string) {
     const keyWords = ["hrb ", "hrb:", "handelsregister ", "hra: ", "hra ", "hr-nr ", "hr-nr."]
     return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 1 : 0
 }
+
+export function findPhoneNumberperKeyword(line: string) {
+    const keyWords = ["tel", "tel: ", "tel.", "tel.:", "telefon ", "telefon:", "fon ", "fon: ", "phone ", "phone: "]
+    return keyWords.filter(keyword => line.toLowerCase().indexOf(keyword) > -1).length > 0 ? 0.8 : 0
+}
+
    

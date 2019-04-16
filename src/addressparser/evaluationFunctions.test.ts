@@ -1,4 +1,4 @@
-import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword, findUrlperRegex, findGermanTradeRegisterPerKeyword } from "./evaluationFunctions";
+import { findEmailPerRegex, findZipCityPerRegex, findStreetNumberPerRegex, findStreetNumberPerKeyword, findCompanyNamePerKeyword, findUrlperRegex, findGermanTradeRegisterPerKeyword, findPhoneNumberperKeyword } from "./evaluationFunctions";
 
 it('should identify emails correctly' , () => {
 
@@ -107,4 +107,21 @@ it('should identify Trade Register Number correctly by Keyword' , () => {
         expect(findGermanTradeRegisterPerKeyword(test.testString)).toBe(test.expectedProbability)
     })
 
+})
+
+it('should identify phone number correctly' , () => {
+
+    [
+        { testString: "", expectedProbability: 0 },
+        { testString: "test@test.de", expectedProbability: 0 },
+        { testString: "Teststrasse 1", expectedProbability: 0 },
+        { testString: "Teststrasse 1 a", expectedProbability: 0 },
+        { testString: "Tel.: +49 211 69540 609", expectedProbability: 0.8},
+        { testString: "Tel. +49 3681 3933 66", expectedProbability: 0.8},
+        { testString: "Telefon: 08857 / 278", expectedProbability: 0.8},
+    ]
+  
+    .forEach ( test => {
+        expect(findPhoneNumberperKeyword(test.testString)).toBe(test.expectedProbability)
+    })
 })

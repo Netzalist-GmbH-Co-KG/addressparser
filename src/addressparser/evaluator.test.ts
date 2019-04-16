@@ -16,7 +16,7 @@ HRB Nr: 75031`
 
 it("should evaluate the address correctly", () => {
     const result = evaluateSignature(testLines, combineEvaluators())
-    expect(result.length).toEqual(6)
+    expect(result.length).toEqual(7)
 
     expect(result[0].lineType).toEqual(lineTypes.email)
     expect(result[0].bestLine).toEqual(5)
@@ -36,7 +36,8 @@ it("should evaluate the address correctly", () => {
     expect(result[5].lineType).toEqual(lineTypes.germanTradeRegister)
     expect(result[5].bestLine).toEqual(11)
 
-
+    expect(result[6].lineType).toEqual(lineTypes.phoneNumber)
+    expect(result[6].bestLine).toEqual(2)
     
 })
 
